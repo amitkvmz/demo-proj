@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Full Layout - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="web-resources/easyUI/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="web-resources/easyUI/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="web-resources/easyUI/themes/demo.css">
+    <script type="text/javascript" src="web-resources/easyUI/jquery.min.js"></script>
+    <script type="text/javascript" src="web-resources/easyUI/jquery.easyui.min.js"></script>
+
+    <script type="text/javascript">
+        /* 		$(function () {
+			$('#tt').tabs({
+				onLoad: function (panel) {
+					var plugin = panel.panel('options').title;
+					panel.find('textarea[name="code-' + plugin + '"]').each(function () {
+						var data = $(this).val();
+						data = data.replace(/(\r\n|\r|\n)/g, '\n');
+						if (data.indexOf('\t') == 0) {
+							data = data.replace(/^\t/, '');
+							data = data.replace(/\n\t/g, '\n');
+						}
+						data = data.replace(/\t/g, '    ');
+						var pre = $('<pre name="code" class="prettyprint linenums"></pre>').insertAfter(this);
+						pre.text(data);
+						$(this).remove();
+					});
+					prettyPrint();
+				}
+			});
+			var sw = $(window).width();
+			if (sw < 767) {
+				$('body').layout('collapse', 'west');
+			}
+			$('.navigation-toggle span').bind('click', function () {
+				$('#head-menu').toggle();
+			});
+		});
+ */
+        function open1(plugin) {
+            if ($('#tt').tabs('exists', plugin)) {
+                $('#tt').tabs('select', plugin);
+            } else {
+                $('#tt').tabs('add', {
+                    title: plugin,
+                    href: plugin + '.html',
+                    closable: true,
+                    bodyCls: 'content-doc',
+                    extractor: function (data) {
+                        data = $.fn.panel.defaults.extractor(data);
+                        var tmp = $('<div></div>').html(data);
+                        data = tmp.find('#content').html();
+                        tmp.remove();
+                        return data;
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+
+<body class="easyui-layout">
+    <div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px"><img src="https://mail.fiberhome.com/coremail/XT3/assets/70572/images/logo.gif" /></div>
+    <div data-options="region:'west',split:true,title:'West'" style="width:150px;padding:10px;">
+        <ul class="easyui-tree">
+            <li>
+                <span>My Documents</span>
+                <ul>
+                    <li data-options="state:'closed'">
+                        <span>Photos</span>
+                        <ul>
+                            <li>
+                                <span>Friend</span>
+                            </li>
+                            <li>
+                                <span>Wife</span>
+                            </li>
+                            <li>
+                                <span>Company</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Program Files</span>
+                        <ul>
+                            <li>Intel</li>
+                            <li>Java</li>
+                            <li>Microsoft Office</li>
+                            <li>Games</li>
+                        </ul>
+                    </li>
+                    <li><a href="#" onclick="open1('HomePage')">HomePage</a></li>
+                    <li><a href="#" onclick="open1('About')">About</a></li>
+                    <li><a href="#" onclick="open1('layout')">layout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- <div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">east region</div> -->
+    <div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;">
+        <form id="ff" method="post">
+            <div>
+                <label for="name">Name:</label>
+                <input class="easyui-validatebox" type="text" name="name" data-options="required:true" />
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input class="easyui-validatebox" type="text" name="email" data-options="validType:'email'" />
+            </div>
+            ...
+        </form>
+    </div>
+
+    <div data-options="region:'center',title:'Center'">
+
+        <div id="tt" class="easyui-tabs tabs-container easyui-fluid" fit="true" border="false" plain="true" style="width: 586px; height: 908px;">
+
+        </div>
+    </div>
+    </div>
+    <div class="easyui-panel" id="tab-panel">
+
+    </div>
+
+    <!-- <div class="easyui-tabs" id="#tt" data-options="fit:true,border:false,plain:true">
+
+			<div title="About" data-options="href:'_content.html'" style="padding:10px"></div> <!--  tabs  -->
+    <!-- 	<div title="DataGrid" style="padding:5px">
+				<table class="easyui-datagrid" data-options="url:'datagrid_data1.json',method:'get',singleSelect:true,fit:true,fitColumns:true">
+					<thead>
+						<tr>
+							<th data-options="field:'itemid'" width="80">Item ID</th>
+							<th data-options="field:'productid'" width="100">Product ID</th>
+							<th data-options="field:'listprice',align:'right'" width="80">List Price</th>
+							<th data-options="field:'unitcost',align:'right'" width="80">Unit Cost</th>
+							<th data-options="field:'attr1'" width="150">Attribute</th>
+							<th data-options="field:'status',align:'center'" width="50">Status</th>
+						</tr>
+					</thead>
+				</table>
+			</div> -->
+    <!-- </div> -->
+    </div>
+</body>
+
+</html>
